@@ -8,40 +8,56 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 250 100% 99%;
-    --foreground: 217 33% 17%;
+    --background: 0 0% 98%;
+    --foreground: 217 33% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 217 33% 17%;
+    --card-foreground: 217 33% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 217 33% 17%;
+    --popover-foreground: 217 33% 15%;
 
-    --primary: 217 91% 60%;
+    --primary: 217 89% 61%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 217 19% 90%;
-    --secondary-foreground: 217 33% 17%;
+    --secondary: 217 10% 95%;
+    --secondary-foreground: 217 33% 15%;
 
-    --muted: 217 19% 95%;
+    --muted: 220 13% 96%;
     --muted-foreground: 217 10% 46%;
 
-    --accent: 217 35% 85%;
-    --accent-foreground: 217 33% 17%;
+    --accent: 217 35% 92%;
+    --accent-foreground: 217 33% 15%;
 
-    /* Healthcare specific colors */
-    --medical-blue: 217 91% 60%;
-    --medical-light: 217 50% 95%;
+    /* Apple-style healthcare colors */
+    --medical-blue: 217 89% 61%;
+    --medical-cyan: 194 98% 52%;
+    --medical-green: 142 69% 58%;
+    --medical-light: 217 40% 98%;
+    --medical-mint: 165 83% 93%;
     --success: 142 69% 58%;
     --warning: 38 92% 50%;
+    --error: 0 84% 60%;
     
-    /* Gradients */
-    --gradient-medical: linear-gradient(135deg, hsl(217 91% 60%), hsl(213 94% 68%));
-    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(217 19% 98%));
+    /* Apple-style gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(217 89% 61%) 0%, hsl(194 98% 52%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(217 40% 98%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(220 13% 97%));
+    --gradient-hero: linear-gradient(135deg, hsl(217 89% 61%) 0%, hsl(194 98% 52%) 50%, hsl(165 83% 93%) 100%);
     
-    /* Shadows */
-    --shadow-medical: 0 4px 20px -2px hsl(217 91% 60% / 0.15);
-    --shadow-card: 0 2px 10px -2px hsl(217 19% 27% / 0.08);
+    /* Apple-style shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(217 19% 27% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(217 19% 27% / 0.1), 0 2px 4px -1px hsl(217 19% 27% / 0.06);
+    --shadow-lg: 0 10px 15px -3px hsl(217 19% 27% / 0.1), 0 4px 6px -2px hsl(217 19% 27% / 0.05);
+    --shadow-xl: 0 20px 25px -5px hsl(217 19% 27% / 0.1), 0 10px 10px -5px hsl(217 19% 27% / 0.04);
+    --shadow-card: 0 4px 12px -2px hsl(217 19% 27% / 0.08), 0 2px 4px -1px hsl(217 19% 27% / 0.06);
+    --shadow-medical: 0 8px 30px -8px hsl(217 89% 61% / 0.3);
+    --shadow-glow: 0 0 0 1px hsl(217 89% 61% / 0.1), 0 0 20px hsl(217 89% 61% / 0.15);
+    
+    /* Glass morphism */
+    --glass-bg: hsl(0 0% 100% / 0.8);
+    --glass-border: hsl(217 19% 27% / 0.1);
+    --glass-backdrop: blur(20px);
     
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);

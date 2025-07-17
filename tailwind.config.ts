@@ -54,10 +54,14 @@ export default {
 				},
 				medical: {
 					blue: 'hsl(var(--medical-blue))',
-					light: 'hsl(var(--medical-light))'
+					cyan: 'hsl(var(--medical-cyan))',
+					green: 'hsl(var(--medical-green))',
+					light: 'hsl(var(--medical-light))',
+					mint: 'hsl(var(--medical-mint))'
 				},
 				success: 'hsl(var(--success))',
 				warning: 'hsl(var(--warning))',
+				error: 'hsl(var(--error))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -68,6 +72,24 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				}
+			},
+			backgroundImage: {
+				'gradient-primary': 'var(--gradient-primary)',
+				'gradient-card': 'var(--gradient-card)',
+				'gradient-subtle': 'var(--gradient-subtle)',
+				'gradient-hero': 'var(--gradient-hero)'
+			},
+			boxShadow: {
+				'sm': 'var(--shadow-sm)',
+				'md': 'var(--shadow-md)',
+				'lg': 'var(--shadow-lg)',
+				'xl': 'var(--shadow-xl)',
+				'card': 'var(--shadow-card)',
+				'medical': 'var(--shadow-medical)',
+				'glow': 'var(--shadow-glow)'
+			},
+			backdropBlur: {
+				'glass': 'var(--glass-backdrop)'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

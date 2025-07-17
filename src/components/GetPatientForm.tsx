@@ -131,117 +131,174 @@ const GetPatientForm = () => {
   };
 
   return (
-    <div className="space-y-6">
-      <Card className="shadow-card">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Search className="h-5 w-5" />
-            Retrieve Patient by ID
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="space-y-8">
+      <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl border border-white/20 overflow-hidden">
+        <div className="bg-gradient-card p-8 border-b border-white/20">
+          <div className="flex items-center gap-3">
+            <div className="p-3 rounded-2xl bg-gradient-primary shadow-glow">
+              <Search className="h-6 w-6 text-white" />
+            </div>
             <div>
-              <Label htmlFor="patientId" className="text-sm font-medium">
-                Patient ID <span className="text-destructive">*</span>
+              <h2 className="text-2xl font-bold text-foreground">Retrieve Patient</h2>
+              <p className="text-muted-foreground">Search for an existing FHIR Patient resource</p>
+            </div>
+          </div>
+        </div>
+        <div className="p-8">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <Label htmlFor="patientId" className="text-sm font-medium text-foreground">
+                Patient ID <span className="text-error">*</span>
               </Label>
               <Input
                 id="patientId"
                 value={patientId}
                 onChange={(e) => setPatientId(e.target.value)}
                 placeholder="Enter patient ID (e.g., patient-123456)"
+                className="mt-2 rounded-xl border-muted bg-white/50 backdrop-blur-sm focus:border-primary focus:ring-1 focus:ring-primary/20"
                 required
               />
             </div>
 
-            <Button type="submit" disabled={isLoading} className="w-full">
+            <Button 
+              type="submit" 
+              disabled={isLoading} 
+              className="w-full py-4 rounded-xl bg-gradient-primary text-white font-semibold shadow-medical hover:shadow-glow transition-all duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:transform-none"
+            >
               {isLoading ? (
-                <>Fetching Patient...</>
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                  Fetching Patient...
+                </div>
               ) : (
                 <>
-                  <Search className="h-4 w-4 mr-2" />
+                  <Search className="h-5 w-5 mr-2" />
                   Fetch Patient
                 </>
               )}
             </Button>
           </form>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
 
       {/* Patient Summary Card */}
       {patientData && (
-        <Card className="shadow-card border-success/20">
-          <CardHeader className="bg-gradient-to-r from-success/5 to-primary/5">
-            <CardTitle className="flex items-center gap-2 text-success">
-              <User className="h-5 w-5" />
-              Patient Summary
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="pt-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-4">
-                <div>
-                  <h3 className="font-semibold text-lg">
+        <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl border border-white/20 overflow-hidden">
+          <div className="bg-gradient-to-r from-medical-green/10 to-medical-cyan/10 p-8 border-b border-white/20">
+            <div className="flex items-center gap-3">
+              <div className="p-3 rounded-2xl bg-medical-green shadow-md">
+                <User className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-medical-green">Patient Summary</h3>
+                <p className="text-muted-foreground">FHIR Patient resource details</p>
+              </div>
+            </div>
+          </div>
+          <div className="p-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div className="space-y-6">
+                <div className="bg-gradient-card p-6 rounded-2xl border border-muted/30">
+                  <h4 className="font-bold text-xl text-foreground mb-1">
                     {patientData.name?.[0]?.given?.[0]} {patientData.name?.[0]?.family}
-                  </h3>
-                  <Badge variant="secondary" className="mt-1">
+                  </h4>
+                  <Badge variant="secondary" className="bg-medical-light/60 text-medical-blue border-medical-blue/20">
                     ID: {patientData.id}
                   </Badge>
                 </div>
 
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <User className="h-4 w-4" />
-                  <span className="capitalize">{patientData.gender}</span>
-                </div>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3 p-4 rounded-xl bg-medical-light/30 border border-medical-blue/20">
+                    <div className="p-2 rounded-lg bg-medical-blue/10">
+                      <User className="h-5 w-5 text-medical-blue" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-muted-foreground">Gender</p>
+                      <p className="font-medium capitalize text-foreground">{patientData.gender}</p>
+                    </div>
+                  </div>
 
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Calendar className="h-4 w-4" />
-                  <span>{patientData.birthDate ? formatDate(patientData.birthDate) : 'Not provided'}</span>
+                  <div className="flex items-center gap-3 p-4 rounded-xl bg-medical-light/30 border border-medical-blue/20">
+                    <div className="p-2 rounded-lg bg-medical-blue/10">
+                      <Calendar className="h-5 w-5 text-medical-blue" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-muted-foreground">Date of Birth</p>
+                      <p className="font-medium text-foreground">{patientData.birthDate ? formatDate(patientData.birthDate) : 'Not provided'}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
               <div className="space-y-4">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Phone className="h-4 w-4" />
-                  <span>{getPhoneNumber(patientData.telecom)}</span>
+                <div className="flex items-center gap-3 p-4 rounded-xl bg-medical-mint/50 border border-medical-cyan/20">
+                  <div className="p-2 rounded-lg bg-medical-cyan/10">
+                    <Phone className="h-5 w-5 text-medical-cyan" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Phone</p>
+                    <p className="font-medium text-foreground">{getPhoneNumber(patientData.telecom)}</p>
+                  </div>
                 </div>
 
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <span>📧</span>
-                  <span>{getEmail(patientData.telecom)}</span>
+                <div className="flex items-center gap-3 p-4 rounded-xl bg-medical-mint/50 border border-medical-cyan/20">
+                  <div className="p-2 rounded-lg bg-medical-cyan/10">
+                    <span className="text-lg">📧</span>
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Email</p>
+                    <p className="font-medium text-foreground">{getEmail(patientData.telecom)}</p>
+                  </div>
                 </div>
 
-                <div className="flex items-start gap-2 text-sm text-muted-foreground">
-                  <MapPin className="h-4 w-4 mt-0.5" />
-                  <span>{patientData.address?.[0]?.text || 'Not provided'}</span>
+                <div className="flex items-start gap-3 p-4 rounded-xl bg-medical-mint/50 border border-medical-cyan/20">
+                  <div className="p-2 rounded-lg bg-medical-cyan/10">
+                    <MapPin className="h-5 w-5 text-medical-cyan" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Address</p>
+                    <p className="font-medium text-foreground">{patientData.address?.[0]?.text || 'Not provided'}</p>
+                  </div>
                 </div>
               </div>
             </div>
 
             {patientData.meta && (
-              <div className="mt-6 pt-4 border-t">
-                <p className="text-xs text-muted-foreground">
-                  Last updated: {new Date(patientData.meta.lastUpdated).toLocaleString()}
-                  {' | '}Version: {patientData.meta.versionId}
-                </p>
+              <div className="mt-8 pt-6 border-t border-muted/30">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <div className="w-2 h-2 bg-primary rounded-full"></div>
+                  <span>Last updated: {new Date(patientData.meta.lastUpdated).toLocaleString()}</span>
+                  <span>•</span>
+                  <span>Version: {patientData.meta.versionId}</span>
+                </div>
               </div>
             )}
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       )}
 
       {/* Raw JSON Response */}
       {response && (
-        <Card className="shadow-card">
-          <CardHeader>
-            <CardTitle className="text-primary">FHIR JSON Response</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-sm font-mono border">
-              {response}
-            </pre>
-          </CardContent>
-        </Card>
+        <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl border border-white/20 overflow-hidden">
+          <div className="bg-gradient-to-r from-primary/10 to-medical-cyan/10 p-6 border-b border-white/20">
+            <div className="flex items-center gap-3">
+              <div className="p-3 rounded-2xl bg-primary shadow-md">
+                <Search className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-primary">FHIR JSON Response</h3>
+                <p className="text-muted-foreground">Raw patient data in FHIR format</p>
+              </div>
+            </div>
+          </div>
+          <div className="p-6">
+            <div className="rounded-2xl bg-muted/30 border border-muted/50 p-6 overflow-hidden">
+              <pre className="text-sm font-mono text-foreground overflow-x-auto whitespace-pre-wrap">
+                {response}
+              </pre>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

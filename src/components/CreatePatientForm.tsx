@@ -207,108 +207,129 @@ const CreatePatientForm = () => {
   };
 
   return (
-    <div className="space-y-6">
-      <Card className="shadow-card">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Plus className="h-5 w-5" />
-            Create New Patient
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-6">
+    <div className="space-y-8">
+      <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl border border-white/20 overflow-hidden">
+        <div className="bg-gradient-card p-8 border-b border-white/20">
+          <div className="flex items-center gap-3">
+            <div className="p-3 rounded-2xl bg-gradient-primary shadow-glow">
+              <Plus className="h-6 w-6 text-white" />
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold text-foreground">Create New Patient</h2>
+              <p className="text-muted-foreground">Enter patient information to create a FHIR resource</p>
+            </div>
+          </div>
+        </div>
+        <div className="p-8">
+          <form onSubmit={handleSubmit} className="space-y-8">
             {/* Required Fields */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="firstName" className="text-sm font-medium">
-                  First Name <span className="text-destructive">*</span>
-                </Label>
-                <Input
-                  id="firstName"
-                  value={patientData.firstName}
-                  onChange={(e) => handleInputChange('firstName', e.target.value)}
-                  placeholder="Enter first name"
-                  required
-                />
-              </div>
-              <div>
-                <Label htmlFor="lastName" className="text-sm font-medium">
-                  Last Name <span className="text-destructive">*</span>
-                </Label>
-                <Input
-                  id="lastName"
-                  value={patientData.lastName}
-                  onChange={(e) => handleInputChange('lastName', e.target.value)}
-                  placeholder="Enter last name"
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="gender" className="text-sm font-medium">
-                  Gender <span className="text-destructive">*</span>
-                </Label>
-                <Select value={patientData.gender} onValueChange={(value) => handleInputChange('gender', value)}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select gender" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="male">Male</SelectItem>
-                    <SelectItem value="female">Female</SelectItem>
-                    <SelectItem value="other">Other</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div>
-                <Label htmlFor="birthDate" className="text-sm font-medium">
-                  Date of Birth <span className="text-destructive">*</span>
-                </Label>
-                <Input
-                  id="birthDate"
-                  type="date"
-                  value={patientData.birthDate}
-                  onChange={(e) => handleInputChange('birthDate', e.target.value)}
-                  required
-                />
-              </div>
-            </div>
-
             <div>
-              <Label htmlFor="phone" className="text-sm font-medium">
-                Phone Number <span className="text-destructive">*</span>
-              </Label>
-              <Input
-                id="phone"
-                value={patientData.phone}
-                onChange={(e) => handleInputChange('phone', e.target.value)}
-                placeholder="Enter phone number"
-                required
-              />
-            </div>
+              <h3 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
+                <span className="w-2 h-2 bg-error rounded-full"></span>
+                Required Information
+              </h3>
+              <div className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <Label htmlFor="firstName" className="text-sm font-medium text-foreground">
+                      First Name <span className="text-error">*</span>
+                    </Label>
+                    <Input
+                      id="firstName"
+                      value={patientData.firstName}
+                      onChange={(e) => handleInputChange('firstName', e.target.value)}
+                      placeholder="Enter first name"
+                      className="mt-2 rounded-xl border-muted bg-white/50 backdrop-blur-sm focus:border-primary focus:ring-1 focus:ring-primary/20"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="lastName" className="text-sm font-medium text-foreground">
+                      Last Name <span className="text-error">*</span>
+                    </Label>
+                    <Input
+                      id="lastName"
+                      value={patientData.lastName}
+                      onChange={(e) => handleInputChange('lastName', e.target.value)}
+                      placeholder="Enter last name"
+                      className="mt-2 rounded-xl border-muted bg-white/50 backdrop-blur-sm focus:border-primary focus:ring-1 focus:ring-primary/20"
+                      required
+                    />
+                  </div>
+                </div>
 
-            <div>
-              <Label htmlFor="address" className="text-sm font-medium">
-                Address <span className="text-destructive">*</span>
-              </Label>
-              <Input
-                id="address"
-                value={patientData.address}
-                onChange={(e) => handleInputChange('address', e.target.value)}
-                placeholder="Enter full address"
-                required
-              />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <Label htmlFor="gender" className="text-sm font-medium text-foreground">
+                      Gender <span className="text-error">*</span>
+                    </Label>
+                    <Select value={patientData.gender} onValueChange={(value) => handleInputChange('gender', value)}>
+                      <SelectTrigger className="mt-2 rounded-xl border-muted bg-white/50 backdrop-blur-sm">
+                        <SelectValue placeholder="Select gender" />
+                      </SelectTrigger>
+                      <SelectContent className="rounded-xl border-muted bg-white/95 backdrop-blur-xl">
+                        <SelectItem value="male">Male</SelectItem>
+                        <SelectItem value="female">Female</SelectItem>
+                        <SelectItem value="other">Other</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <Label htmlFor="birthDate" className="text-sm font-medium text-foreground">
+                      Date of Birth <span className="text-error">*</span>
+                    </Label>
+                    <Input
+                      id="birthDate"
+                      type="date"
+                      value={patientData.birthDate}
+                      onChange={(e) => handleInputChange('birthDate', e.target.value)}
+                      className="mt-2 rounded-xl border-muted bg-white/50 backdrop-blur-sm focus:border-primary focus:ring-1 focus:ring-primary/20"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <Label htmlFor="phone" className="text-sm font-medium text-foreground">
+                    Phone Number <span className="text-error">*</span>
+                  </Label>
+                  <Input
+                    id="phone"
+                    value={patientData.phone}
+                    onChange={(e) => handleInputChange('phone', e.target.value)}
+                    placeholder="Enter phone number"
+                    className="mt-2 rounded-xl border-muted bg-white/50 backdrop-blur-sm focus:border-primary focus:ring-1 focus:ring-primary/20"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="address" className="text-sm font-medium text-foreground">
+                    Address <span className="text-error">*</span>
+                  </Label>
+                  <Input
+                    id="address"
+                    value={patientData.address}
+                    onChange={(e) => handleInputChange('address', e.target.value)}
+                    placeholder="Enter full address"
+                    className="mt-2 rounded-xl border-muted bg-white/50 backdrop-blur-sm focus:border-primary focus:ring-1 focus:ring-primary/20"
+                    required
+                  />
+                </div>
+              </div>
             </div>
 
             {/* Optional Fields */}
-            <div className="border-t pt-6">
-              <h3 className="text-lg font-semibold mb-4">Optional Fields</h3>
+            <div className="border-t border-muted/30 pt-8">
+              <h3 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
+                <span className="w-2 h-2 bg-medical-cyan rounded-full"></span>
+                Optional Information
+              </h3>
               
               {patientData.optionalFields.map((field, index) => (
-                <div key={field.key} className="flex items-center gap-2 mb-3">
+                <div key={field.key} className="flex items-center gap-3 mb-4">
                   <div className="flex-1">
-                    <Label htmlFor={`optional-${field.key}`} className="text-sm font-medium">
+                    <Label htmlFor={`optional-${field.key}`} className="text-sm font-medium text-foreground">
                       {field.label}
                     </Label>
                     <Input
@@ -316,6 +337,7 @@ const CreatePatientForm = () => {
                       value={field.value}
                       onChange={(e) => handleOptionalFieldChange(index, e.target.value)}
                       placeholder={`Enter ${field.label.toLowerCase()}`}
+                      className="mt-2 rounded-xl border-muted bg-white/50 backdrop-blur-sm focus:border-primary focus:ring-1 focus:ring-primary/20"
                     />
                   </div>
                   <Button
@@ -323,7 +345,7 @@ const CreatePatientForm = () => {
                     variant="outline"
                     size="sm"
                     onClick={() => removeOptionalField(index)}
-                    className="mt-6"
+                    className="mt-7 rounded-xl border-muted hover:bg-error/10 hover:border-error/30"
                   >
                     <X className="h-4 w-4" />
                   </Button>
@@ -331,12 +353,12 @@ const CreatePatientForm = () => {
               ))}
 
               {availableOptionalFields.length > 0 && (
-                <div className="flex items-center gap-2 mt-4">
+                <div className="flex items-center gap-3 mt-6">
                   <Select onValueChange={addOptionalField}>
-                    <SelectTrigger className="w-48">
+                    <SelectTrigger className="w-60 rounded-xl border-muted bg-white/50 backdrop-blur-sm">
                       <SelectValue placeholder="Add optional field" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="rounded-xl border-muted bg-white/95 backdrop-blur-xl">
                       {availableOptionalFields.map(option => (
                         <SelectItem key={option.key} value={option.key}>
                           {option.label}
@@ -344,39 +366,56 @@ const CreatePatientForm = () => {
                       ))}
                     </SelectContent>
                   </Select>
-                  <Badge variant="secondary" className="text-xs">
+                  <Badge variant="secondary" className="text-xs bg-medical-light/50 text-medical-blue border-medical-blue/20">
                     {availableOptionalFields.length} available
                   </Badge>
                 </div>
               )}
             </div>
 
-            <Button type="submit" disabled={isLoading} className="w-full">
+            <Button 
+              type="submit" 
+              disabled={isLoading} 
+              className="w-full py-4 rounded-xl bg-gradient-primary text-white font-semibold shadow-medical hover:shadow-glow transition-all duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:transform-none"
+            >
               {isLoading ? (
-                <>Processing...</>
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                  Processing...
+                </div>
               ) : (
                 <>
-                  <Send className="h-4 w-4 mr-2" />
+                  <Send className="h-5 w-5 mr-2" />
                   Create Patient
                 </>
               )}
             </Button>
           </form>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
 
       {/* Response Display */}
       {response && (
-        <Card className="shadow-card">
-          <CardHeader>
-            <CardTitle className="text-success">Patient Created Successfully</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-sm font-mono">
-              {response}
-            </pre>
-          </CardContent>
-        </Card>
+        <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl border border-white/20 overflow-hidden">
+          <div className="bg-gradient-to-r from-medical-green/10 to-medical-cyan/10 p-6 border-b border-white/20">
+            <div className="flex items-center gap-3">
+              <div className="p-3 rounded-2xl bg-medical-green shadow-md">
+                <Send className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-medical-green">Patient Created Successfully</h3>
+                <p className="text-muted-foreground">FHIR Patient resource has been generated</p>
+              </div>
+            </div>
+          </div>
+          <div className="p-6">
+            <div className="rounded-2xl bg-muted/30 border border-muted/50 p-6 overflow-hidden">
+              <pre className="text-sm font-mono text-foreground overflow-x-auto whitespace-pre-wrap">
+                {response}
+              </pre>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
